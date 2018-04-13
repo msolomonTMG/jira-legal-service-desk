@@ -93,7 +93,7 @@ function sendCommentNotification(req, res) {
       ]
     }
   ]
-  slack.sendMessage([techMgmtHelpChannel], text, attachments)
+  slack.sendMessage([legalChannel], text, attachments)
     .then(success => { res.sendStatus(200) })
     .catch(err => {res.sendStatus(500) })
 }
@@ -120,7 +120,7 @@ function sendIssueCreatedNotification(req, res) {
     }
   ]
 
-  let urls = [techMgmtHelpChannel]
+  let urls = [legalChannel]
   slack.sendMessage(urls, text, attachments)
     .then(success => { res.sendStatus(200) })
     .catch(err => {res.sendStatus(500) })
