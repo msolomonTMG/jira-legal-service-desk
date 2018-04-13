@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/', function(req, res) {
+  console.log(req.body)
   switch(req.body.webhookEvent) {
     // uncomment if we want updates for transitions or comments in the future
     // case 'jira:issue_updated':
@@ -111,9 +112,8 @@ function sendIssueCreatedNotification(req, res) {
       thumb_url: `${issue.fields.creator.avatarUrls["48x48"]}`,
       fields: [
         {
-          title: "Description",
-          // only send first 100 chars of the description to slack
-          value: `${issue.fields.description.slice(0, 100)}...`,
+          title: "Type",
+          value: `${issue.fields.issuetype.name}`,
           short: false
         }
       ]
